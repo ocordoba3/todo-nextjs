@@ -15,10 +15,8 @@ export const SidebarItem = ({ href, label, Icon }: Props) => {
   return (
     <Link
       href={href}
-      className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl  mb-2 ${
-        currentPath === href
-          ? "text-white bg-gradient-to-r from-sky-600 to-cyan-400"
-          : "text-black"
+      className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white mb-2 ${
+        currentPath === href ? "font-bold bg-[#85C7F2]" : ""
       }`}
     >
       {Icon}

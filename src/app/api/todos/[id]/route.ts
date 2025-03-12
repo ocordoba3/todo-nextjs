@@ -36,7 +36,8 @@ export async function PATCH(request: Request, { params }: Args) {
     });
   }
 
-  const { description, complete = false } = await request.json();
+  const { description = todo.description, complete = false } =
+    await request.json();
 
   if (!description) {
     return NextResponse.json(
