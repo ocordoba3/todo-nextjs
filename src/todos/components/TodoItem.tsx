@@ -32,13 +32,13 @@ export const TodoItem = ({ todo }: Props) => {
       >
         <div className="flex flex-wrap text-xl font-bold text-slate-900">
           <span className="w-full">{todo.description}</span>
-          <time className="inline-flex items-center justify-center text-xs font-semibold w-40 h-6 mb-3 sm:mb-0 text-gray-600 bg-gray-100 rounded-full">
+          <time className="inline-flex items-center justify-center text-xs font-semibold w-fit px-2 h-6 mb-3 sm:mb-0 text-gray-600 bg-gray-200 rounded-full">
             Created at: {new Date(todo.createdAt).toLocaleDateString()}
           </time>
           {/* Botón al hacer hover */}
           <button
             onClick={handleStatus}
-            className={`px-4 text-sm font-semibold text-white ${
+            className={`ml-2 px-4 text-sm font-semibold text-white ${
               !todo.complete ? "bg-green-500 " : "bg-[#60a5d3]"
             } rounded opacity-0 group-hover:opacity-100 transition-opacity`}
           >
