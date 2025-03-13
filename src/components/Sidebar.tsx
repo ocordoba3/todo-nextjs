@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { CiBookmarkCheck, CiBoxList, CiLogout } from "react-icons/ci";
 import { SidebarItem } from "./SidebarItem";
-import { FaServer } from "react-icons/fa6";
+import { FaCookie, FaServer } from "react-icons/fa6";
 
 export const Sidebar = () => {
   const navItems = [
@@ -20,6 +20,11 @@ export const Sidebar = () => {
       label: "Server To Do",
       Icon: <FaServer size={30} />,
       href: "/dashboard/server-todos",
+    },
+    {
+      label: "Cookies",
+      Icon: <FaCookie size={30} />,
+      href: "/dashboard/cookies",
     },
   ];
 

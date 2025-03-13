@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const ServerTodosPage = async () => {
   const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-slate-50 overflow-hidden">
+    <section className="relative flex flex-col overflow-hidden">
       <div className="w-full max-w-6xl px-4 md:px-1">
         <NewTodo />
         <div className="flex flex-col justify-center divide-y divide-slate-200 [&>*]:pt-8">
