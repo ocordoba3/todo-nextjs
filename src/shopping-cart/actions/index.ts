@@ -24,10 +24,11 @@ export function addProductCart(id: string) {
 export function removeProductCart(id: string) {
   const cookieCart = getCookieCart();
 
-  if (!cookieCart[id] || cookieCart[id] === 0) {
-    return;
+  if (cookieCart[id] && cookieCart[id] > 1) {
+    cookieCart[id] = cookieCart[id] - 1;
+  } else {
+    delete cookieCart[id];
   }
-  cookieCart[id] = cookieCart[id] - 1;
 
   setCookie("cart", JSON.stringify(cookieCart));
 }
