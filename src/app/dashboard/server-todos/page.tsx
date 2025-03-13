@@ -1,14 +1,17 @@
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 import prisma from "@/lib/prisma";
 import { NewTodo } from "@/todos/components/NewTodo";
 import { TodoItem } from "@/todos/components/TodoItem";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Rest To Do list",
+  title: "Server To Do list",
   description: "Things you have to do",
 };
 
-const RestTodosPage = async () => {
+const ServerTodosPage = async () => {
   const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
   return (
     <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-slate-50 overflow-hidden">
@@ -28,4 +31,4 @@ const RestTodosPage = async () => {
   );
 };
 
-export default RestTodosPage;
+export default ServerTodosPage;
