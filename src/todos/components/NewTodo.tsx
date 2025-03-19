@@ -1,14 +1,15 @@
 "use client";
 
 import { IoTrashOutline } from "react-icons/io5";
-// import { clearCompleted, createTodo } from "../helpers";
+import { clearCompleted, createTodo } from "../helpers";
 import { FormEvent, useState } from "react";
-import { createTodo, clearCompleted } from "../actions";
+// import { createTodo, clearCompleted } from "../actions";
+import { useRouter } from "next/navigation";
 
 export const NewTodo = () => {
   const [description, setDescription] = useState("");
   // Rest API
-  // const router = useRouter();
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -16,17 +17,19 @@ export const NewTodo = () => {
       return;
     }
     // Rest API
-    // await createTodo(description);
-    // router.refresh();
     await createTodo(description);
-    setDescription("");
+    router.refresh();
+
+    // Server action
+    // await createTodo(description);
+    // setDescription("");
   }
 
   // Rest API
-  // async function handleClear() {
-  //   await clearCompleted();
-  //   router.refresh();
-  // }
+  async function handleClear() {
+    await clearCompleted();
+    router.refresh();
+  }
 
   return (
     <form className="flex w-full mt-8 mx-4" onSubmit={handleSubmit}>
@@ -46,7 +49,7 @@ export const NewTodo = () => {
       </button>
 
       <button
-        onClick={clearCompleted}
+        onClick={handleClear}
         type="button"
         className="flex text-sm items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all"
       >

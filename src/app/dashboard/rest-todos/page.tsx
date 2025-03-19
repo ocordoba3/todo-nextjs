@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NewTodo } from "@/todos/components/NewTodo";
 import { TodoItem } from "@/todos/components/TodoItem";
@@ -9,7 +10,14 @@ export const metadata: Metadata = {
 };
 
 const RestTodosPage = async () => {
-  const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
+  const session = await auth();
+
+  const todos = session?.user
+    ? await prisma.todo.findMany({
+        where: { userId: session.user.id },
+        orderBy: { createdAt: "desc" },
+      })
+    : [];
   return (
     <section className="relative flex flex-col overflow-hidden">
       <div className="w-full max-w-6xl px-4 md:px-1">

@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -27,6 +28,12 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
   const { description } = await request.json();
 
   if (!description) {
@@ -36,7 +43,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const result = await prisma.todo.create({ data: { description } });
+  const result = await prisma.todo.create({
+    data: { description, userId: session.user.id! },
+  });
 
   return NextResponse.json(result);
 }
