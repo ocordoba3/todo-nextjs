@@ -57,7 +57,9 @@ export const Sidebar = async () => {
             <h5 className="hidden mt-4 text-xl font-semibold text-white lg:block">
               {userName}
             </h5>
-            <span className="hidden text-white lg:block">Admin</span>
+            <span className="capitalize text-white lg:block">
+              {session.user.roles?.join(", ")}
+            </span>
           </div>
         )}
 
